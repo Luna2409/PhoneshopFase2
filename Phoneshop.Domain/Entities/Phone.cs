@@ -1,6 +1,8 @@
-﻿namespace Phoneshop.Domain.Objects
+﻿using Phoneshop.Domain.Interfaces;
+
+namespace Phoneshop.Domain.Objects
 {
-    public class Phone
+    public class Phone : IEntity
     {
         public int Id { get; set; }
         public int BrandID { get; set; }

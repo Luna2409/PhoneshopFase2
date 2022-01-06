@@ -20,7 +20,7 @@ namespace Phoneshop.Business.Migrations
 
             modelBuilder.Entity("Phoneshop.Domain.Objects.Brand", b =>
                 {
-                    b.Property<int>("BrandID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -28,34 +28,34 @@ namespace Phoneshop.Business.Migrations
                     b.Property<string>("BrandName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("BrandID");
+                    b.HasKey("Id");
 
                     b.ToTable("Brands");
 
                     b.HasData(
                         new
                         {
-                            BrandID = 1,
+                            Id = 1,
                             BrandName = "Huawei"
                         },
                         new
                         {
-                            BrandID = 2,
+                            Id = 2,
                             BrandName = "Samsung"
                         },
                         new
                         {
-                            BrandID = 3,
+                            Id = 3,
                             BrandName = "Apple"
                         },
                         new
                         {
-                            BrandID = 4,
+                            Id = 4,
                             BrandName = "Google"
                         },
                         new
                         {
-                            BrandID = 5,
+                            Id = 5,
                             BrandName = "Xiaomi"
                         });
                 });

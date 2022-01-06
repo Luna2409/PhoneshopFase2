@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Phoneshop.Domain.Objects;
-using System.Runtime.Intrinsics.Arm;
 
 namespace Phoneshop.Business.Data
 {
@@ -18,27 +17,27 @@ namespace Phoneshop.Business.Data
         {
             modelBuilder.Entity<Brand>().HasData(new Brand
             {
-                BrandID = 1,
+                Id = 1,
                 BrandName = "Huawei"
             });
             modelBuilder.Entity<Brand>().HasData(new Brand
             {
-                BrandID = 2,
+                Id = 2,
                 BrandName = "Samsung"
             });
             modelBuilder.Entity<Brand>().HasData(new Brand
             {
-                BrandID = 3,
+                Id = 3,
                 BrandName = "Apple"
             });
             modelBuilder.Entity<Brand>().HasData(new Brand
             {
-                BrandID = 4,
+                Id = 4,
                 BrandName = "Google"
             });
             modelBuilder.Entity<Brand>().HasData(new Brand
             {
-                BrandID = 5,
+                Id = 5,
                 BrandName = "Xiaomi"
             });
 
