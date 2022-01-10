@@ -5,20 +5,23 @@ using System.Data.SqlClient;
 
 namespace Phoneshop.Business
 {
-    public class BrandService : /*AdoRepository<Brand>,*/ IBrandService
+    public class BrandService : IBrandService
     {
-        public IEnumerable<Brand> GetBrandList()
+        private readonly IRepository<Brand> _brandRepository;
+
+        public BrandService(IRepository<Brand> brandRepository)
         {
-            return null; //GetList("SELECT * FROM brands");
+            _brandRepository = brandRepository;
         }
 
-        //public override Brand FillObject(SqlDataReader reader)
-        //{
-        //    return new Brand
-        //    {
-        //        BrandID = reader.GetInt32(0),
-        //        BrandName = reader.GetString(1),
-        //    };
-        //}
+        public void Create(Brand brand)
+        {
+            _brandRepository.Create(brand);
+        }
+
+        public IEnumerable<Brand> GetAll()
+        {
+            return _brandRepository.GetAll();
+        }
     }
 }

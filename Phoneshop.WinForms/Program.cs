@@ -1,5 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Phoneshop.Business;
+using Phoneshop.Business.Data;
 using Phoneshop.Domain.Interfaces;
 using System;
 using System.Windows.Forms;
@@ -19,7 +21,6 @@ namespace Phoneshop.WinForms
             Application.SetCompatibleTextRenderingDefault(false);
 
             var services = new ServiceCollection();
-
             ConfigureServices(services);
 
             using (ServiceProvider serviceProvider = services.BuildServiceProvider())
@@ -31,8 +32,10 @@ namespace Phoneshop.WinForms
 
         private static void ConfigureServices(ServiceCollection services)
         {
+            services.AddDbContext<DataContext>(x => x.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Phoneshop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;MultipleActiveResultSets=true"), ServiceLifetime.Scoped);
             services.AddScoped<IPhoneService, PhoneService>();
             services.AddScoped<IBrandService, BrandService>();
+            services.AddScoped(typeof(IRepository<>), typeof(EFRepository<>));
 
             services.AddScoped<PhoneOverview>();
             services.AddScoped<AddPhone>();

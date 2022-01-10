@@ -1,5 +1,6 @@
 ﻿using Phoneshop.Domain.Objects;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Phoneshop.Domain.Interfaces
 {
@@ -16,8 +17,8 @@ namespace Phoneshop.Domain.Interfaces
         /// Gets a list of all phones in the shop
         /// </summary>
         /// <returns></returns>
-        IEnumerable<Phone> GetList();
-
+        IEnumerable<Phone> GetAll();
+        
         /// <summary>
         /// Searches through the brand, Type and Description for the string
         /// </summary>

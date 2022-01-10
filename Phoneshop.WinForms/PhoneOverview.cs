@@ -21,7 +21,7 @@ namespace Phoneshop.WinForms
 
         private void FillListBox()
         {
-            var list = _phoneService.GetList().ToList();
+            var list = _phoneService.GetAll().ToList();
             listBoxPhone.DisplayMember = nameof(Phone.FullName);
 
             foreach (var item in list)
@@ -52,7 +52,7 @@ namespace Phoneshop.WinForms
                     listChanged = false;
                     listBoxPhone.Items.Clear();
 
-                    var list = _phoneService.GetList().ToList();
+                    var list = _phoneService.GetAll().ToList();
                     foreach (var item in list)
                     {
                         listBoxPhone.Items.Add(item);
@@ -102,6 +102,8 @@ namespace Phoneshop.WinForms
                 lblDescription.Text = "";
                 FillListBox();
             }
+
+            BtnMinus.Enabled = false;
         }
 
         private void BtnPlus_Click(object sender, EventArgs e)

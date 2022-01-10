@@ -11,13 +11,13 @@ namespace Phoneshop.Tests.PhoneServiceTests
 
         public GetList()
         {
-            phoneService = new PhoneService(brandService);
+            //phoneService = new PhoneService(brandService);
         }
 
         [Fact]
         public void Should_GiveListOfFivePhones()
         {
-            var phones = phoneService.GetList().ToList();
+            var phones = phoneService.GetAll().ToList();
             var count = phones.Count;
 
             Assert.Equal(9, count);

@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Phoneshop.Business;
+using Phoneshop.Business.Data;
 using Phoneshop.Domain.Interfaces;
 using Phoneshop.Domain.Objects;
 using System;
@@ -13,7 +15,6 @@ namespace Phoneshop
         static void Main(string[] args)
         {
             var services = new ServiceCollection();
-
             ConfigureServices(services);
 
             ServiceProvider serviceProvider = services.BuildServiceProvider();
@@ -22,9 +23,17 @@ namespace Phoneshop
             MainMenu(phoneService);
         }
 
+        private static void ConfigureServices(ServiceCollection services)
+        {
+            services.AddDbContext<DataContext>(x => x.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Phoneshop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;MultipleActiveResultSets=true"), ServiceLifetime.Scoped);
+            services.AddScoped<IPhoneService, PhoneService>();
+            services.AddScoped<IBrandService, BrandService>();
+            services.AddScoped(typeof(IRepository<>), typeof(EFRepository<>));
+        }
+
         public static void MainMenu(IPhoneService phoneService)
         {
-            List<Phone> listOfPhones = phoneService.GetList().ToList();
+            List<Phone> listOfPhones = phoneService.GetAll().ToList();
 
             var index = 1;
 
@@ -95,13 +104,6 @@ namespace Phoneshop
             Console.ReadKey();
             Console.Clear();
             MainMenu(phoneService);
-        }
-
-        private static void ConfigureServices(ServiceCollection services)
-        {
-            services.AddScoped<IPhoneService, PhoneService>();
-            services.AddScoped<IBrandService, BrandService>();
-
         }
     }
 }

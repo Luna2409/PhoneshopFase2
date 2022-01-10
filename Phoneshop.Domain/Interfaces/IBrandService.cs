@@ -9,6 +9,7 @@ namespace Phoneshop.Domain.Interfaces
         /// Gets a list of all the brands
         /// </summary>
         /// <returns></returns>
-        IEnumerable<Brand> GetBrandList();
+        IEnumerable<Brand> GetAll();
+        void Create(Brand brand);
     }
 }
