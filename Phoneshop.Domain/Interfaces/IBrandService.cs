@@ -10,6 +10,11 @@ namespace Phoneshop.Domain.Interfaces
         /// </summary>
         /// <returns></returns>
         IEnumerable<Brand> GetAll();
+
+        /// <summary>
+        /// Creates a new brand
+        /// </summary>
+        /// <param name="brand"></param>
         void Create(Brand brand);
     }
 }

@@ -35,15 +35,15 @@ namespace Phoneshop.Tests.PhoneServiceTests
         {
             mockRepository.Setup(x => x.GetAll()).Returns(new List<Phone>
             {
-                new Phone{ Id = 1, Brand = "Huawei"},
-                new Phone{ Id = 2, Brand = "Samsung"},
-                new Phone{ Id = 3, Brand = "Apple"},
-                new Phone{ Id = 4, Brand = "Google"},
-                new Phone{ Id = 5, Brand = "Xiaomi"}
+                new Phone{ Id = 1, Brand = new Brand{ BrandName = "Huawei"}, Description = "Kwaliteit"},
+                new Phone{ Id = 2, Brand = new Brand{ BrandName = "Samsung"}, Description = "Pixel"},
+                new Phone{ Id = 3, Brand = new Brand{ BrandName = "Apple"}, Description = "Pixel"},
+                new Phone{ Id = 4, Brand = new Brand{ BrandName = "Google"}, Description = "Kwaliteit"},
+                new Phone{ Id = 5, Brand = new Brand{ BrandName = "Xiaomi"}, Description = "Kwaliteit"}
             });
 
             var phone = phoneService.Get(id);
-            Assert.Equal(brand, phone.Brand);
+            Assert.Equal(brand, phone.Brand.BrandName);
         }
 
         [Fact]
@@ -51,11 +51,11 @@ namespace Phoneshop.Tests.PhoneServiceTests
         {
             mockRepository.Setup(x => x.GetAll()).Returns(new List<Phone>
             {
-                new Phone{ Id = 1, Brand = "Huawei"},
-                new Phone{ Id = 2, Brand = "Samsung"},
-                new Phone{ Id = 3, Brand = "Apple"},
-                new Phone{ Id = 4, Brand = "Google"},
-                new Phone{ Id = 5, Brand = "Xiaomi"}
+                new Phone{ Id = 1, Brand = new Brand{ BrandName = "Huawei"}, Description = "Kwaliteit"},
+                new Phone{ Id = 2, Brand = new Brand{ BrandName = "Samsung"}, Description = "Pixel"},
+                new Phone{ Id = 3, Brand = new Brand{ BrandName = "Apple"}, Description = "Pixel"},
+                new Phone{ Id = 4, Brand = new Brand{ BrandName = "Google"}, Description = "Kwaliteit"},
+                new Phone{ Id = 5, Brand = new Brand{ BrandName = "Xiaomi"}, Description = "Kwaliteit"}
             });
 
             var phone = phoneService.Get(50);

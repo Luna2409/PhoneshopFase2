@@ -32,15 +32,15 @@ namespace Phoneshop.Tests.PhoneServiceTests
         {
             mockRepository.Setup(x => x.GetAll()).Returns(new List<Phone>
             {
-                new Phone{ Id = 1, Brand = "Huawei", Description = "Kwaliteit"},
-                new Phone{ Id = 2, Brand = "Samsung", Description = "Pixel"},
-                new Phone{ Id = 3, Brand = "Apple", Description = "Pixel"},
-                new Phone{ Id = 4, Brand = "Google", Description = "Kwaliteit"},
-                new Phone{ Id = 5, Brand = "Xiaomi", Description = "Kwaliteit"}
+                new Phone{ Id = 1, Brand = new Brand{ BrandName = "Huawei"}, Description = "Kwaliteit"},
+                new Phone{ Id = 2, Brand = new Brand{ BrandName = "Samsung"}, Description = "Pixel"},
+                new Phone{ Id = 3, Brand = new Brand{ BrandName = "Apple"}, Description = "Pixel"},
+                new Phone{ Id = 4, Brand = new Brand{ BrandName = "Google"}, Description = "Kwaliteit"},
+                new Phone{ Id = 5, Brand = new Brand{ BrandName = "Xiaomi"}, Description = "Kwaliteit"}
             });
             var phone = new Phone()
             {
-                Brand = "Apple",
+                Brand = new Brand { BrandName = "Apple"},
                 Type = "IPhone Xs",
                 Description = "Camera",
                 PriceWithTax = 674,

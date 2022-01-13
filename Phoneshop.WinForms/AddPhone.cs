@@ -44,12 +44,14 @@ namespace Phoneshop.WinForms
                 return;
             }
 
-            var newPhone = new Phone();
-            newPhone.Brand = txtbxBrand.Text.ToString();
-            newPhone.Type = txtbxType.Text.ToString();
-            newPhone.PriceWithTax = price;
-            newPhone.Stock = stock;
-            newPhone.Description = txtbxDescription.Text.ToString();
+            var newPhone = new Phone()
+            {
+                Brand = new Brand() { BrandName = txtbxBrand.Text },
+                Type = txtbxType.Text.ToString(),
+                PriceWithTax = price,
+                Stock = stock,
+                Description = txtbxDescription.Text.ToString(),
+            };
 
             _phoneService.Create(newPhone);
             ApplyBtnClicked = true;

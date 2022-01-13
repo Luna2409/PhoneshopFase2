@@ -31,7 +31,10 @@ namespace Phoneshop.Business
                             case "Brand":
                                 if (reader.Read())
                                 {
-                                    phone.Brand = reader.Value;
+                                    phone.Brand = new Brand()
+                                    {
+                                        BrandName = reader.Value
+                                    };
                                 }
                                 break;
                             case "Type":

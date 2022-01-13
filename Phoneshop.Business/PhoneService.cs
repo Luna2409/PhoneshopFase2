@@ -23,11 +23,11 @@ namespace Phoneshop.Business
             var phones = _phoneRepository.GetAll();
             var brands = _brandService.GetAll();
 
-            foreach (var item in phones)
+            foreach (var phone in phones)
             {
-                var brand = brands.FirstOrDefault(x => x.Id == item.BrandID);
+                var brand = brands.FirstOrDefault(x => x.Id == phone.BrandID);
 
-                item.Brand = brand.BrandName;
+                phone.Brand = brand;
             }
 
             return phones;
@@ -46,14 +46,14 @@ namespace Phoneshop.Business
         {
             IEnumerable<Phone> phones = PhoneList();
 
-            return phones.OrderBy(x => x.Brand);
+            return phones.OrderBy(x => x.Brand.BrandName);
         }
 
         public IEnumerable<Phone> Search(string query)
         {
             IEnumerable<Phone> phones = PhoneList();
 
-            return phones.Where(x => x.Brand.ToLower().Contains(query.ToLower()) || x.Type.ToLower().Contains(query.ToLower()) || x.Description.ToLower().Contains(query.ToLower())).OrderBy(x => x.Brand);
+            return phones.Where(x => x.Brand.BrandName.ToLower().Contains(query.ToLower()) || x.Type.ToLower().Contains(query.ToLower()) || x.Description.ToLower().Contains(query.ToLower())).OrderBy(x => x.Brand);
         }
 
         public void Delete(int id)
@@ -70,20 +70,20 @@ namespace Phoneshop.Business
 
             if (!hasMatch)
             {
-                var hasBrand = brandList.Any(x => x.BrandName.ToLower() == phone.Brand.ToLower());
+                var hasBrand = brandList.Any(x => x.BrandName.ToLower() == phone.Brand.BrandName.ToLower());
 
                 if (!hasBrand)
                 {
                     var brand = new Brand
                     {
-                        BrandName = phone.Brand
+                        BrandName = phone.Brand.BrandName
                     };
 
                     _brandService.Create(brand);
                 }
 
                 List<Brand> newBrandList = _brandService.GetAll().ToList();
-                var brandItem = newBrandList.Find(x => x.BrandName.ToLower() == phone.Brand.ToLower());
+                var brandItem = newBrandList.Find(x => x.BrandName.ToLower() == phone.Brand.BrandName.ToLower());
                 phone.BrandID = brandItem.Id;
 
                 _phoneRepository.Create(phone);
