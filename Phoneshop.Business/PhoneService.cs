@@ -25,9 +25,6 @@ namespace Phoneshop.Business
 
             foreach (var item in phones)
             {
-                //var brandId = item.BrandID;
-                //var brand = brands.FirstOrDefault(x => x.Id == brandId);
-
                 var brand = brands.FirstOrDefault(x => x.Id == item.BrandID);
 
                 item.Brand = brand.BrandName;
@@ -77,8 +74,10 @@ namespace Phoneshop.Business
 
                 if (!hasBrand)
                 {
-                    var brand = new Brand();
-                    brand.BrandName = phone.Brand;
+                    var brand = new Brand
+                    {
+                        BrandName = phone.Brand
+                    };
 
                     _brandService.Create(brand);
                 }
