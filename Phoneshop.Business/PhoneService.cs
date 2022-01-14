@@ -35,25 +35,29 @@ namespace Phoneshop.Business
 
         public Phone Get(int id)
         {
-            var phone = PhoneList().FirstOrDefault(x => x.Id == id);
-            var foundPhone = _phoneRepository.GetById(id);
-            foundPhone.Brand = phone.Brand;
+            var phone = PhoneList().SingleOrDefault(x => x.Id == id);
+            //var foundPhone = _phoneRepository.GetById(id);
+            //foundPhone.Brand = phone.Brand;
 
-            return foundPhone;
+            return phone;
         }
 
         public IEnumerable<Phone> GetAll()
         {
-            IEnumerable<Phone> phones = PhoneList();
+            return PhoneList().OrderBy(x => x.Brand.BrandName);
 
-            return phones.OrderBy(x => x.Brand.BrandName);
+            //return _phoneRepository.GetAll();  //.OrderBy(x => x.Brand.BrandName);
         }
 
         public IEnumerable<Phone> Search(string query)
         {
-            IEnumerable<Phone> phones = PhoneList();
+            //IEnumerable<Phone> phones = PhoneList();
+            //return phones.Where(x => x.Brand.BrandName.ToLower().Contains(query.ToLower()) || x.Type.ToLower().Contains(query.ToLower()) || x.Description.ToLower().Contains(query.ToLower())).OrderBy(x => x.Brand);
 
-            return phones.Where(x => x.Brand.BrandName.ToLower().Contains(query.ToLower()) || x.Type.ToLower().Contains(query.ToLower()) || x.Description.ToLower().Contains(query.ToLower())).OrderBy(x => x.Brand);
+            IEnumerable<Phone> phones = PhoneList();
+            var search = phones.Where(x => x.Brand.BrandName.ToLower().Contains(query.ToLower()) || x.Type.ToLower().Contains(query.ToLower()) || x.Description.ToLower().Contains(query.ToLower()));
+
+            return search.OrderBy(x => x.Brand.BrandName);
         }
 
         public void Delete(int id)

@@ -37,6 +37,9 @@ namespace Phoneshop.Business
             return _context.Set<T>();
         }
 
+        //public IEnumerable<T> GetAll() 
+        //    => _context.Set<T>();
+
         public T GetById(int id)
         {
             return _context.Set<T>().FirstOrDefault(x => x.Id == id);

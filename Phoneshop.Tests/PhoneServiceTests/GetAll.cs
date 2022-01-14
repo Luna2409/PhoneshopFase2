@@ -27,19 +27,26 @@ namespace Phoneshop.Tests.PhoneServiceTests
         [Fact]
         public void Should_GiveListOfFivePhones()
         {
+            mockBrandRepository.Setup(b => b.GetAll()).Returns(new List<Brand>
+            {
+                new Brand { Id = 1, BrandName = "Huawei" },
+                new Brand { Id = 2, BrandName = "Samsung" },
+                new Brand { Id = 3, BrandName = "Apple" },
+                new Brand { Id = 4, BrandName = "Google" },
+                new Brand { Id = 5, BrandName = "Xiaomi" }
+            });
             mockRepository.Setup(x => x.GetAll()).Returns(new List<Phone>
             {
-                new Phone{ Id = 1, Brand = new Brand{ BrandName = "Huawei"}, Description = "Kwaliteit"},
-                new Phone{ Id = 2, Brand = new Brand{ BrandName = "Samsung"}, Description = "Pixel"},
-                new Phone{ Id = 3, Brand = new Brand{ BrandName = "Apple"}, Description = "Pixel"},
-                new Phone{ Id = 4, Brand = new Brand{ BrandName = "Google"}, Description = "Kwaliteit"},
-                new Phone{ Id = 5, Brand = new Brand{ BrandName = "Xiaomi"}, Description = "Kwaliteit"}
+                new Phone{ Id = 1, BrandID = 1, Description = "Kwaliteit"},
+                new Phone{ Id = 2, BrandID = 2, Description = "Pixel"},
+                new Phone{ Id = 3, BrandID = 3, Description = "Pixel"},
+                new Phone{ Id = 4, BrandID = 4, Description = "Kwaliteit"},
+                new Phone{ Id = 5, BrandID = 5, Description = "Kwaliteit"}
             });
 
-            var phones = phoneService.GetAll().ToList();
-            var count = phones.Count;
+            var result = phoneService.GetAll().ToList();
 
-            Assert.Equal(5, count);
+            Assert.Equal(5, result.Count);
         }
     }
 }

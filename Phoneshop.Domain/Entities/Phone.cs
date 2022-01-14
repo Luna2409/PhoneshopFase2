@@ -10,7 +10,6 @@ namespace Phoneshop.Domain.Objects
         public int BrandID { get; set; }
 
         [NotMapped]
-        //public string Brand { get; set; }
         public Brand Brand { get; set; }
 
         public string Type { get; set; }
@@ -25,7 +24,7 @@ namespace Phoneshop.Domain.Objects
 
         public string FullName 
         { 
-            get { return $"{Brand} - {Type}"; } 
+            get { return $"{Brand.BrandName} - {Type}"; } 
         }
     }
 }
