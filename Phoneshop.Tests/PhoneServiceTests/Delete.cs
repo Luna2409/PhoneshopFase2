@@ -2,11 +2,8 @@
 using Phoneshop.Business;
 using Phoneshop.Domain.Interfaces;
 using Phoneshop.Domain.Objects;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Phoneshop.Tests.PhoneServiceTests
@@ -49,9 +46,7 @@ namespace Phoneshop.Tests.PhoneServiceTests
 
             phoneService.Delete(4);
 
-            var phones = phoneService.GetAll().ToList();
-
-            Assert.Equal(4, phones.Count);
+            mockRepository.Verify(x => x.Delete(4), Times.Once);
         }
     }
 }

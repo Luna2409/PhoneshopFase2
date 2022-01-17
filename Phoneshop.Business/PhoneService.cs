@@ -45,15 +45,10 @@ namespace Phoneshop.Business
         public IEnumerable<Phone> GetAll()
         {
             return PhoneList().OrderBy(x => x.Brand.BrandName);
-
-            //return _phoneRepository.GetAll();  //.OrderBy(x => x.Brand.BrandName);
         }
 
         public IEnumerable<Phone> Search(string query)
         {
-            //IEnumerable<Phone> phones = PhoneList();
-            //return phones.Where(x => x.Brand.BrandName.ToLower().Contains(query.ToLower()) || x.Type.ToLower().Contains(query.ToLower()) || x.Description.ToLower().Contains(query.ToLower())).OrderBy(x => x.Brand);
-
             IEnumerable<Phone> phones = PhoneList();
             var search = phones.Where(x => x.Brand.BrandName.ToLower().Contains(query.ToLower()) || x.Type.ToLower().Contains(query.ToLower()) || x.Description.ToLower().Contains(query.ToLower()));
 
