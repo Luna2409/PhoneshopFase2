@@ -29,16 +29,16 @@ namespace Phoneshop.Tests.PhoneServiceTests
         {
             mockBrandRepository.Setup(b => b.GetAll()).Returns(new List<Brand>
             {
-                new Brand { Id = 1, BrandName = "Huawei" },
-                new Brand { Id = 2, BrandName = "Samsung" },
-                new Brand { Id = 3, BrandName = "Apple" },
-                new Brand { Id = 4, BrandName = "Google" },
-                new Brand { Id = 5, BrandName = "Xiaomi" }
-            });
+                new Brand { Id = 1, Name = "Huawei" },
+                new Brand { Id = 2, Name = "Samsung" },
+                new Brand { Id = 3, Name = "Apple" },
+                new Brand { Id = 4, Name = "Google" },
+                new Brand { Id = 5, Name = "Xiaomi" }
+            }.AsQueryable<Brand>);
 
             phoneService.Create(new Phone
             {
-                Brand = new Brand { BrandName = "Apple"},
+                Brand = new Brand { Name = "Apple" },
                 Type = "IPhone Xs",
                 Description = "Camera",
                 PriceWithTax = 674,

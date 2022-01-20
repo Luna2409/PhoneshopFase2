@@ -46,7 +46,7 @@ namespace Phoneshop.WinForms
 
             var newPhone = new Phone()
             {
-                Brand = new Brand() { BrandName = txtbxBrand.Text },
+                Brand = new Brand() { Name = txtbxBrand.Text },
                 Type = txtbxType.Text.ToString(),
                 PriceWithTax = price,
                 Stock = stock,

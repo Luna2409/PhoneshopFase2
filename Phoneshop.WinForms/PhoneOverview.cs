@@ -34,7 +34,7 @@ namespace Phoneshop.WinForms
         {
             if (listBoxPhone.SelectedItem is Phone phone)
             {
-                lblBrand.Text = phone.Brand.BrandName;
+                lblBrand.Text = phone.Brand.Name;
                 lblType.Text = phone.Type;
                 lblPrice.Text = phone.PriceWithTax.ToString();
                 lblStock.Text = phone.Stock.ToString();

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using Phoneshop.Domain.Objects;
 
 namespace Phoneshop.Business.Data
@@ -11,41 +12,33 @@ namespace Phoneshop.Business.Data
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         { }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Phoneshop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;MultipleActiveResultSets=true");
-            }
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Brand>().HasData(
             new Brand
             {
                 Id = 1,
-                BrandName = "Huawei"
+                Name = "Huawei"
             },
             new Brand
             {
                 Id = 2,
-                BrandName = "Samsung"
+                Name = "Samsung"
             },
             new Brand
             {
                 Id = 3,
-                BrandName = "Apple"
+                Name = "Apple"
             },
             new Brand
             {
                 Id = 4,
-                BrandName = "Google"
+                Name = "Google"
             },
             new Brand
             {
                 Id = 5,
-                BrandName = "Xiaomi"
+                Name = "Xiaomi"
             });
 
             modelBuilder.Entity<Phone>().HasData(
@@ -94,6 +87,17 @@ namespace Phoneshop.Business.Data
                 Stock = 98,
                 Description = "108 megapixel camera, 4k videokwaliteit \n6.67 inch AMOLED scherm \n128 GB opslaggeheugen (Uitbreidbaar met Micro-sd) \nWater- en stofbestendig (IP53)"
             });
+        }
+    }
+
+    public class DataContextFactory : IDesignTimeDbContextFactory<DataContext>
+    {
+        public DataContext CreateDbContext(string[] args)
+        {
+            var optionBuilder = new DbContextOptionsBuilder<DataContext>();
+            var connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Phoneshop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;MultipleActiveResultSets=true";
+            optionBuilder.UseSqlServer(connectionString);
+            return new DataContext(optionBuilder.Options);
         }
     }
 }

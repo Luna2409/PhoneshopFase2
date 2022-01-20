@@ -33,7 +33,7 @@ namespace Phoneshop.Business
                                 {
                                     phone.Brand = new Brand()
                                     {
-                                        BrandName = reader.Value
+                                        Name = reader.Value
                                     };
                                 }
                                 break;

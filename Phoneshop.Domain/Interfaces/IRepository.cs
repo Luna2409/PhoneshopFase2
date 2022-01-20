@@ -12,7 +12,7 @@ namespace Phoneshop.Domain.Interfaces
         /// Gets everything from database
         /// </summary>
         /// <returns></returns>
-        IEnumerable<T> GetAll();
+        IQueryable<T> GetAll();
 
         /// <summary>
         /// Gets Entity by id

@@ -25,7 +25,7 @@ namespace Phoneshop.Tests.BrandServiceTests
 
             brandService.Create(new Brand
             {
-                BrandName = "OnePlus"
+                Name = "OnePlus"
             });
             
             mockRepository.Verify(x => x.Create(It.IsAny<Brand>()), Times.Once);

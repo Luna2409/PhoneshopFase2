@@ -32,7 +32,7 @@ namespace Phoneshop.Business
             }
         }
 
-        public IEnumerable<T> GetAll()
+        public IQueryable<T> GetAll()
         {
             return _context.Set<T>();
         }

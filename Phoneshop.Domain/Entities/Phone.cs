@@ -1,14 +1,18 @@
 ﻿using Phoneshop.Domain.Interfaces;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Phoneshop.Domain.Objects
 {
     public class Phone : IEntity
     {
+        [Key]
         public int Id { get; set; }
 
+        [ForeignKey("Brand")]
         public int BrandID { get; set; }
-
+        
+        //[InverseProperty("Phones")]
         [NotMapped]
         public Brand Brand { get; set; }
 
@@ -24,7 +28,7 @@ namespace Phoneshop.Domain.Objects
 
         public string FullName 
         { 
-            get { return $"{Brand.BrandName} - {Type}"; } 
+            get { return $"{Brand.Name} - {Type}"; } 
         }
     }
 }

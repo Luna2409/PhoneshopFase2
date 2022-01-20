@@ -39,7 +39,7 @@ namespace Phoneshop
 
             foreach (var phone in listOfPhones)
             {
-                Console.WriteLine($"{index}. {phone.Brand.BrandName}, {phone.Type}");
+                Console.WriteLine($"{index}. {phone.Brand.Name}, {phone.Type}");
                 index++;
             }
             Console.WriteLine($"{listOfPhones.Count + 1}. Search");
@@ -78,7 +78,7 @@ namespace Phoneshop
                 MainMenu(phoneService);
             }
 
-            Console.WriteLine($"{phoneFound.Brand.BrandName}, {phoneFound.Type}, {phoneFound.PriceWithTax} \n");
+            Console.WriteLine($"{phoneFound.Brand.Name}, {phoneFound.Type}, {phoneFound.PriceWithTax} \n");
             Console.WriteLine($"{phoneFound.Description}");
 
             Console.ReadKey();
@@ -97,7 +97,7 @@ namespace Phoneshop
 
             foreach (var phone in result)
             {
-                Console.WriteLine($"{phone.Brand.BrandName}");
+                Console.WriteLine($"{phone.Brand.Name}");
             }
 
             Console.WriteLine("\nPress a key to go back");

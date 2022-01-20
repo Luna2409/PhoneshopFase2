@@ -18,18 +18,20 @@ namespace Phoneshop.Tests.BrandServiceTests
             mockRepository = new Mock<IRepository<Brand>>();
             brandService = new BrandService(mockRepository.Object);
         }
+        
+
 
         [Fact]
         public void Should_GetAllPhones()
         {
             mockRepository.Setup(x => x.GetAll()).Returns(new List<Brand>
             {
-                new Brand{ Id = 1, BrandName = "Huawei"},
-                new Brand{ Id = 2, BrandName = "Samsung"},
-                new Brand{ Id = 3, BrandName = "Apple"},
-                new Brand{ Id = 4, BrandName = "Google"},
-                new Brand{ Id = 5, BrandName = "Xiaomi"}
-            });
+                new Brand{ Id = 1, Name = "Huawei"},
+                new Brand{ Id = 2, Name = "Samsung"},
+                new Brand{ Id = 3, Name = "Apple"},
+                new Brand{ Id = 4, Name = "Google"},
+                new Brand{ Id = 5, Name = "Xiaomi"}
+            }.AsQueryable);
 
             var result = brandService.GetAll();
             Assert.Equal(5, result.Count());

@@ -29,12 +29,12 @@ namespace Phoneshop.Tests.PhoneServiceTests
         {
             mockBrandRepository.Setup(b => b.GetAll()).Returns(new List<Brand>
             {
-                new Brand { Id = 1, BrandName = "Huawei" },
-                new Brand { Id = 2, BrandName = "Samsung" },
-                new Brand { Id = 3, BrandName = "Apple" },
-                new Brand { Id = 4, BrandName = "Google" },
-                new Brand { Id = 5, BrandName = "Xiaomi" }
-            });
+                new Brand { Id = 1, Name = "Huawei" },
+                new Brand { Id = 2, Name = "Samsung" },
+                new Brand { Id = 3, Name = "Apple" },
+                new Brand { Id = 4, Name = "Google" },
+                new Brand { Id = 5, Name = "Xiaomi" }
+            }.AsQueryable<Brand>);
             mockRepository.Setup(x => x.GetAll()).Returns(new List<Phone>
             {
                 new Phone{ Id = 1, BrandID = 1, Description = "Kwaliteit"},
@@ -42,7 +42,7 @@ namespace Phoneshop.Tests.PhoneServiceTests
                 new Phone{ Id = 3, BrandID = 3, Description = "Pixel"},
                 new Phone{ Id = 4, BrandID = 4, Description = "Kwaliteit"},
                 new Phone{ Id = 5, BrandID = 5, Description = "Kwaliteit"}
-            });
+            }.AsQueryable<Phone>);
 
             phoneService.Delete(4);
 
