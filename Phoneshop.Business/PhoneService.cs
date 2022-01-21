@@ -34,9 +34,6 @@ namespace Phoneshop.Business
         public IEnumerable<Phone> GetAll()
         {
             return Phones().OrderBy(x => x.Brand.Name).ThenBy(x => x.Type);
-
-
-            //return _phoneRepository.GetAll().Include(x => x.Brand).OrderBy(x => x.Brand.Name).ThenBy(x => x.Type);
         }
 
         public IEnumerable<Phone> Search(string query)
