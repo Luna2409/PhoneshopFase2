@@ -10,38 +10,27 @@ namespace Phoneshop.Tests.PhoneServiceTests
 {
     public class Search
     {
-        private readonly IPhoneService phoneService;
-        private readonly IBrandService brandService;
-        private readonly Mock<IRepository<Phone>> mockRepository;
-        private readonly Mock<IRepository<Brand>> mockBrandRepository;
+        private readonly PhoneService phoneService;
+        private readonly Mock<IRepository<Phone>> mockPhoneRepository;
+        private readonly Mock<IBrandService> mockBrandRepository;
 
         public Search()
         {
-            mockRepository = new Mock<IRepository<Phone>>();
-            mockBrandRepository = new Mock<IRepository<Brand>>();
-
-            brandService = new BrandService(mockBrandRepository.Object);
-            phoneService = new PhoneService(brandService, mockRepository.Object);
+            mockPhoneRepository = new();
+            mockBrandRepository = new();
+            phoneService = new PhoneService(mockBrandRepository.Object, mockPhoneRepository.Object);
         }
 
         [Fact]
         public void Should_ReturnListOfPhones()
         {
-            mockBrandRepository.Setup(b => b.GetAll()).Returns(new List<Brand>
+            mockPhoneRepository.Setup(x => x.GetAll()).Returns(new List<Phone>
             {
-                new Brand { Id = 1, Name = "Huawei" },
-                new Brand { Id = 2, Name = "Samsung" },
-                new Brand { Id = 3, Name = "Apple" },
-                new Brand { Id = 4, Name = "Google" },
-                new Brand { Id = 5, Name = "Xiaomi" }
-            }.AsQueryable);
-            mockRepository.Setup(x => x.GetAll()).Returns(new List<Phone>
-            {
-                new Phone{ Id = 1, BrandID = 1, Type = "dasd", Description = "Kwaliteit"},
-                new Phone{ Id = 2, BrandID = 2, Type = "dasd", Description = "Pixel"},
-                new Phone{ Id = 3, BrandID = 3, Type = "dasd", Description = "Pixel"},
-                new Phone{ Id = 4, BrandID = 4, Type = "dasd", Description = "Kwaliteit"},
-                new Phone{ Id = 5, BrandID = 5, Type = "dasd", Description = "Kwaliteit"}
+                new Phone{ Id = 1, Brand = new Brand{Name = "Huawei" }, Type = "dasd", Description = "Kwaliteit"},
+                new Phone{ Id = 2, Brand = new Brand{Name = "Samsung" }, Type = "dasd", Description = "Pixel"},
+                new Phone{ Id = 3, Brand = new Brand{Name = "Apple" }, Type = "dasd", Description = "Pixel"},
+                new Phone{ Id = 4, Brand = new Brand{Name = "Google" }, Type = "dasd", Description = "Kwaliteit"},
+                new Phone{ Id = 5, Brand = new Brand{Name = "Xiaomi" }, Type = "dasd", Description = "Kwaliteit"}
             }.AsQueryable);
 
             var phones = phoneService.Search("Kwaliteit").ToList();

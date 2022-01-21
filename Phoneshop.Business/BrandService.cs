@@ -1,7 +1,6 @@
 ﻿using Phoneshop.Domain.Interfaces;
 using Phoneshop.Domain.Objects;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 
 namespace Phoneshop.Business
 {

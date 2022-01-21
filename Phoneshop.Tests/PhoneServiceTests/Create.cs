@@ -34,7 +34,7 @@ namespace Phoneshop.Tests.PhoneServiceTests
                 new Brand { Id = 3, Name = "Apple" },
                 new Brand { Id = 4, Name = "Google" },
                 new Brand { Id = 5, Name = "Xiaomi" }
-            }.AsQueryable<Brand>);
+            }.AsQueryable);
 
             phoneService.Create(new Phone
             {

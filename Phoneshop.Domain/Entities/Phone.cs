@@ -13,7 +13,6 @@ namespace Phoneshop.Domain.Objects
         public int BrandID { get; set; }
         
         //[InverseProperty("Phones")]
-        [NotMapped]
         public Brand Brand { get; set; }
 
         public string Type { get; set; }

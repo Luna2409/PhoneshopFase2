@@ -26,7 +26,7 @@ namespace Phoneshop.Domain.Interfaces
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        T Create(T entity);
+        void Create(T entity);
 
         /// <summary>
         /// Deletes a entity by id

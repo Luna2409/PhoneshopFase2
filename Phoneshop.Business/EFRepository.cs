@@ -1,10 +1,11 @@
 ﻿using Phoneshop.Business.Data;
 using Phoneshop.Domain.Interfaces;
-using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Phoneshop.Business
 {
+    [ExcludeFromCodeCoverage]
     public class EFRepository<T> : IRepository<T> where T : class, IEntity
     {
         private readonly DataContext _context;
@@ -14,12 +15,10 @@ namespace Phoneshop.Business
             _context = context;
         }
 
-        public T Create(T entity)
+        public void Create(T entity)
         {
             _context.Set<T>().Add(entity);
             SaveChanges();
-
-            return entity;
         }
 
         public void Delete(int id)
@@ -33,21 +32,12 @@ namespace Phoneshop.Business
         }
 
         public IQueryable<T> GetAll()
-        {
-            return _context.Set<T>();
-        }
-
-        //public IEnumerable<T> GetAll() 
-        //    => _context.Set<T>();
+            => _context.Set<T>();
 
         public T GetById(int id)
-        {
-            return _context.Set<T>().FirstOrDefault(x => x.Id == id);
-        }
+            => _context.Set<T>().FirstOrDefault(x => x.Id == id);
 
         public void SaveChanges()
-        {
-            _context.SaveChanges();
-        }
+            => _context.SaveChanges();
     }
 }
