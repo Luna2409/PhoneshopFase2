@@ -12,7 +12,6 @@ namespace Phoneshop.Domain.Objects
 
         public string Name { get; set; }
 
-        //[InverseProperty(nameof(Phone.Brand))]
         public ICollection<Phone> Phones { get; set;}
     }
 }

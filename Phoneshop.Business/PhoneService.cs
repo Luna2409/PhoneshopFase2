@@ -19,9 +19,9 @@ namespace Phoneshop.Business
             _phoneRepository = phoneRepository;
         }
 
-        private IEnumerable<Phone> Phones()
+        private IQueryable<Phone> Phones()
         {
-            return _phoneRepository.GetAll().Include(x => x.Brand);
+            return _phoneRepository.GetAll().Include(x => x.Brand).OrderBy(x => x.Brand.Name).ThenBy(x => x.Type);
         }
 
         public Phone Get(int id)
@@ -33,15 +33,14 @@ namespace Phoneshop.Business
         
         public IEnumerable<Phone> GetAll()
         {
-            return Phones().OrderBy(x => x.Brand.Name).ThenBy(x => x.Type);
+            return Phones();
         }
 
         public IEnumerable<Phone> Search(string query)
         {
-            return Phones().Where(x => x.Brand.Name.ToLower().Contains(query.ToLower())
-                                        || x.Type.ToLower().Contains(query.ToLower())
-                                        || x.Description.ToLower().Contains(query.ToLower()))
-                                        .OrderBy(x => x.Brand.Name).ThenBy(x => x.Type);
+            return Phones().Where(x => x.Brand.Name.Contains(query)
+                                        || x.Type.Contains(query)
+                                        || x.Description.Contains(query));
         }
 
         public void Delete(int id)

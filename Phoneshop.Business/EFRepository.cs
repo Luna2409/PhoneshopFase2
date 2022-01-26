@@ -32,10 +32,10 @@ namespace Phoneshop.Business
         }
 
         public IQueryable<T> GetAll()
-            => _context.Set<T>();
+            => _context.Set<T>(); //TODO AsNoTracking
 
         public T GetById(int id)
-            => _context.Set<T>().FirstOrDefault(x => x.Id == id);
+            => _context.Set<T>().FirstOrDefault(x => x.Id == id); //TODO AsNoTracking
 
         public void SaveChanges()
             => _context.SaveChanges();

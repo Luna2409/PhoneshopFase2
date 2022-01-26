@@ -12,7 +12,6 @@ namespace Phoneshop.Domain.Objects
         [ForeignKey("Brand")]
         public int BrandID { get; set; }
         
-        //[InverseProperty("Phones")]
         public Brand Brand { get; set; }
 
         public string Type { get; set; }

@@ -30,12 +30,12 @@ namespace Phoneshop.WinForms
             }
             if (!double.TryParse(txtbxPrice.Text, out double price))
             {
-                MessageBox.Show("Wrong input at Price. This field is required");
+                MessageBox.Show("Wrong input at Price. This field is required"); //TODO Negatieve prijs
                 return;
             }
             if (!int.TryParse(txtbxStock.Text, out int stock))
             {
-                MessageBox.Show("Wrong input at Stock. This field is required");
+                MessageBox.Show("Wrong input at Stock. This field is required"); //TODO Negatieve stock
                 return;
             }
             if (txtbxDescription.Text == string.Empty)
