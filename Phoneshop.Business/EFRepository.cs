@@ -1,4 +1,5 @@
-﻿using Phoneshop.Business.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Phoneshop.Business.Data;
 using Phoneshop.Domain.Interfaces;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace Phoneshop.Business
         }
 
         public IQueryable<T> GetAll()
-            => _context.Set<T>(); //TODO AsNoTracking
+            => _context.Set<T>().AsNoTracking(); 
 
         public T GetById(int id)
-            => _context.Set<T>().FirstOrDefault(x => x.Id == id); //TODO AsNoTracking
+            => _context.Set<T>().AsNoTracking().FirstOrDefault(x => x.Id == id); 
 
         public void SaveChanges()
             => _context.SaveChanges();

@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Phoneshop.Business;
 using Phoneshop.Business.Data;
+using Phoneshop.Business.Loggers;
 using Phoneshop.Domain.Interfaces;
 using System;
 using System.Windows.Forms;
@@ -36,6 +37,7 @@ namespace Phoneshop.WinForms
             services.AddScoped<IPhoneService, PhoneService>();
             services.AddScoped<IBrandService, BrandService>();
             services.AddScoped(typeof(IRepository<>), typeof(EFRepository<>));
+            services.AddScoped<ILogger, DBLogger>();
 
             services.AddScoped<PhoneOverview>();
             services.AddScoped<AddPhone>();

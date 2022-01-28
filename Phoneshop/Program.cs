@@ -2,8 +2,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using Phoneshop.Business;
 using Phoneshop.Business.Data;
+using Phoneshop.Business.Loggers;
 using Phoneshop.Domain.Interfaces;
-using Phoneshop.Domain.Objects;
+using Phoneshop.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,14 +22,6 @@ namespace Phoneshop
             var phoneService = serviceProvider.GetRequiredService<IPhoneService>();
 
             MainMenu(phoneService);
-        }
-
-        private static void ConfigureServices(ServiceCollection services)
-        {
-            services.AddDbContext<DataContext>(x => x.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Phoneshop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;MultipleActiveResultSets=true"), ServiceLifetime.Scoped);
-            services.AddScoped<IPhoneService, PhoneService>();
-            services.AddScoped<IBrandService, BrandService>();
-            services.AddScoped(typeof(IRepository<>), typeof(EFRepository<>));
         }
 
         public static void MainMenu(IPhoneService phoneService)
@@ -104,6 +97,15 @@ namespace Phoneshop
             Console.ReadKey();
             Console.Clear();
             MainMenu(phoneService);
+        }
+
+        private static void ConfigureServices(ServiceCollection services)
+        {
+            services.AddDbContext<DataContext>(x => x.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Phoneshop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;MultipleActiveResultSets=true"), ServiceLifetime.Scoped);
+            services.AddScoped<IPhoneService, PhoneService>();
+            services.AddScoped<IBrandService, BrandService>();
+            services.AddScoped(typeof(IRepository<>), typeof(EFRepository<>));
+            services.AddScoped<ILogger, DBLogger>();
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Moq;
 using Phoneshop.Business;
 using Phoneshop.Domain.Interfaces;
-using Phoneshop.Domain.Objects;
+using Phoneshop.Domain.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
@@ -13,12 +13,15 @@ namespace Phoneshop.Tests.PhoneServiceTests
         private readonly PhoneService phoneService;
         private readonly Mock<IRepository<Phone>> mockPhoneRepository;
         private readonly Mock<IBrandService> mockBrandRepository;
+        private readonly Mock<ILogger> mockLogger;
 
         public Search()
         {
-            mockPhoneRepository = new();
-            mockBrandRepository = new();
-            phoneService = new PhoneService(mockBrandRepository.Object, mockPhoneRepository.Object);
+            mockPhoneRepository = new Mock<IRepository<Phone>>();
+            mockBrandRepository = new Mock<IBrandService>();
+            mockLogger = new Mock<ILogger>();
+
+            phoneService = new PhoneService(mockBrandRepository.Object, mockPhoneRepository.Object, mockLogger.Object);
         }
 
         [Fact]

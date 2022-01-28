@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-using Phoneshop.Domain.Objects;
+using Phoneshop.Domain.Entities;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Phoneshop.Business.Data
@@ -10,6 +9,8 @@ namespace Phoneshop.Business.Data
     {
         public DbSet<Phone> Phones { get; set; }
         public DbSet<Brand> Brands { get; set; }
+        public DbSet<Log> Logs { get; set; }
+
 
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         { }

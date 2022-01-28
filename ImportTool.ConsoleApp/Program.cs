@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Phoneshop.Business;
 using Phoneshop.Business.Data;
 using Phoneshop.Domain.Interfaces;
-using Phoneshop.Domain.Objects;
+using Phoneshop.Domain.Entities;
 using System.Collections.Generic;
 
 namespace ImportTool.ConsoleApp

@@ -1,5 +1,5 @@
-﻿using Phoneshop.Domain.Interfaces;
-using Phoneshop.Domain.Objects;
+﻿using Phoneshop.Domain.Entities;
+using Phoneshop.Domain.Interfaces;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -9,12 +9,14 @@ namespace Phoneshop.WinForms
     public partial class PhoneOverview : Form
     {
         private readonly IPhoneService _phoneService;
+        private readonly ILogger _logger;
         bool listChanged;
 
-        public PhoneOverview(IPhoneService phoneService)
+        public PhoneOverview(IPhoneService phoneService, ILogger logger)
         {
             InitializeComponent();
             _phoneService = phoneService;
+            _logger = logger;
 
             FillListBox();
         }
@@ -57,7 +59,7 @@ namespace Phoneshop.WinForms
                     {
                         listBoxPhone.Items.Add(item);
                     }
-                } 
+                }
                 return;
             }
 
@@ -108,7 +110,7 @@ namespace Phoneshop.WinForms
 
         private void BtnPlus_Click(object sender, EventArgs e)
         {
-            using (AddPhone newPhone = new(_phoneService))
+            using (AddPhone newPhone = new(_phoneService, _logger))
             {
                 newPhone.ShowDialog(this);
                 if (newPhone.ApplyBtnClicked)

@@ -1,16 +1,18 @@
 ﻿using Phoneshop.Domain.Interfaces;
-using System.Collections.Generic;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Phoneshop.Domain.Entities
 {
-    public class Brand : IEntity
+    public class Log : IEntity
     {
         [Key]
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public string Level { get; set; }
 
-        public ICollection<Phone> Phones { get; set;}
+        public string Message { get; set; } 
+
+        public DateTime DateTime { get; set; }
     }
 }
