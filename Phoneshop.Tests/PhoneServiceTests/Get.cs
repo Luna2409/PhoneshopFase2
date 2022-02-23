@@ -5,6 +5,7 @@ using Phoneshop.Domain.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
+using System;
 
 namespace Phoneshop.Tests.PhoneServiceTests
 {
@@ -60,8 +61,21 @@ namespace Phoneshop.Tests.PhoneServiceTests
             var phone = phoneService.Get(50);
 
             Assert.Null(phone);
+        }
 
-            //Assert.Throws<ArgumentNullException>(() => phoneService.Get(50));
+        [Fact]
+        public void Should_Throw_ArgumentOutOfRangeException()
+        {
+            mockPhoneRepository.Setup(x => x.GetAll()).Returns(new List<Phone>
+            {
+                new Phone{ Id = 1, Brand = new Brand{Name = "Huawei" }, Description = "Kwaliteit"},
+                new Phone{ Id = 2, Brand = new Brand{Name = "Samsung" }, Description = "Pixel"},
+                new Phone{ Id = 3, Brand = new Brand{Name = "Apple" }, Description = "Pixel"},
+                new Phone{ Id = 4, Brand = new Brand{Name = "Google" }, Description = "Kwaliteit"},
+                new Phone{ Id = 5, Brand = new Brand{Name = "Xiaomi" }, Description = "Kwaliteit"}
+            }.AsQueryable);
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => phoneService.Get(0));
         }
     }
 }
