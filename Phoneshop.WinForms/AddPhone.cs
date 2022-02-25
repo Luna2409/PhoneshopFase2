@@ -1,5 +1,5 @@
 ﻿using Phoneshop.Domain.Interfaces;
-using Phoneshop.Domain.Objects;
+using Phoneshop.Domain.Entities;
 using System;
 using System.Windows.Forms;
 
@@ -20,27 +20,36 @@ namespace Phoneshop.WinForms
         {
             if (txtbxBrand.Text == string.Empty)
             {
-                MessageBox.Show("Wrong input at Brand. This field is required");
+                MessageBox.Show("Wrong input at brand. This field is required");
                 return;
             }
             if (txtbxType.Text == string.Empty)
             {
-                MessageBox.Show("Wrong input at Type. This field is required");
+                MessageBox.Show("Wrong input at type. This field is required");
                 return;
             }
             if (!double.TryParse(txtbxPrice.Text, out double price))
             {
-                MessageBox.Show("Wrong input at Price. This field is required"); //TODO Negatieve prijs
+                MessageBox.Show("Wrong input at price. This field is required");
+                return;
+            }
+            if (price < 0)
+            {
+                MessageBox.Show("Price can't be negative");
                 return;
             }
             if (!int.TryParse(txtbxStock.Text, out int stock))
             {
-                MessageBox.Show("Wrong input at Stock. This field is required"); //TODO Negatieve stock
+                MessageBox.Show("Wrong input at stock. This field is required");
                 return;
+            }
+            if (stock < 0)
+            {
+                MessageBox.Show("Stock can't be negative");
             }
             if (txtbxDescription.Text == string.Empty)
             {
-                MessageBox.Show("Wrong input at Description. This field is required");
+                MessageBox.Show("Wrong input at description. This field is required");
                 return;
             }
 

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Phoneshop.Domain.Objects
+namespace Phoneshop.Domain.Entities
 {
     public class Phone : IEntity
     {

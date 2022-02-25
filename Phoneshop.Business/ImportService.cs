@@ -1,5 +1,5 @@
 ﻿using Phoneshop.Domain.Interfaces;
-using Phoneshop.Domain.Objects;
+using Phoneshop.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Xml;

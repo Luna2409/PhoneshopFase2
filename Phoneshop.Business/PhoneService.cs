@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Phoneshop.Domain.Interfaces;
-using Phoneshop.Domain.Objects;
+using Phoneshop.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -26,6 +27,9 @@ namespace Phoneshop.Business
 
         public Phone Get(int id)
         {
+            if (id <= 0)
+                throw new ArgumentOutOfRangeException(nameof(id));
+
             var phone = Phones().SingleOrDefault(x => x.Id == id);
 
             return phone;
@@ -45,6 +49,9 @@ namespace Phoneshop.Business
 
         public void Delete(int id)
         {
+            if (id <= 0)
+                throw new ArgumentOutOfRangeException(nameof(id));
+
             _phoneRepository.Delete(id);
         }
 
@@ -71,6 +78,7 @@ namespace Phoneshop.Business
             List<Brand> updatedBrandList = _brandService.GetAll().ToList();
             var brandItem = updatedBrandList.Find(x => x.Name.ToLower() == phone.Brand.Name.ToLower());
             phone.BrandID = brandItem.Id;
+            phone.Brand = null;
 
             _phoneRepository.Create(phone);
         }

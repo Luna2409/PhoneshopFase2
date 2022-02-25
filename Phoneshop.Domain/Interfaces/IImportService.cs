@@ -1,4 +1,4 @@
-﻿using Phoneshop.Domain.Objects;
+﻿using Phoneshop.Domain.Entities;
 using System.Collections.Generic;
 
 namespace Phoneshop.Domain.Interfaces

@@ -1,9 +1,7 @@
 ﻿using Moq;
 using Phoneshop.Business;
+using Phoneshop.Domain.Entities;
 using Phoneshop.Domain.Interfaces;
-using Phoneshop.Domain.Objects;
-using System.Collections.Generic;
-using System.Linq;
 using Xunit;
 
 namespace Phoneshop.Tests.BrandServiceTests
@@ -27,7 +25,7 @@ namespace Phoneshop.Tests.BrandServiceTests
             {
                 Name = "OnePlus"
             });
-            
+
             mockRepository.Verify(x => x.Create(It.IsAny<Brand>()), Times.Once);
         }
     }

@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-using Phoneshop.Domain.Objects;
+using Phoneshop.Domain.Entities;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Phoneshop.Business.Data
