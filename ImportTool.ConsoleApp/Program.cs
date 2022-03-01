@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Phoneshop.Business;
+using Phoneshop.Business.Services;
 using Phoneshop.Business.Data;
 using Phoneshop.Domain.Interfaces;
 using Phoneshop.Domain.Entities;
 using System.Collections.Generic;
+using Phoneshop.Business.Repositories;
 
 namespace ImportTool.ConsoleApp
 {

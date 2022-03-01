@@ -1,7 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Phoneshop.Business;
 using Phoneshop.Business.Data;
+using Phoneshop.Business.Repositories;
+using Phoneshop.Business.Services;
 using Phoneshop.Domain.Interfaces;
 using System;
 using System.Windows.Forms;

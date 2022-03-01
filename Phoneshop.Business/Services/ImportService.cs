@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Xml;
 
-namespace Phoneshop.Business
+namespace Phoneshop.Business.Services
 {
     public class ImportService : IImportService
     {

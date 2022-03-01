@@ -5,6 +5,7 @@ using Phoneshop.Domain.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
+using Phoneshop.Business.Services;
 
 namespace Phoneshop.Tests.PhoneServiceTests
 {

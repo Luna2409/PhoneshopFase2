@@ -2,7 +2,7 @@
 using Phoneshop.Domain.Entities;
 using System.Collections.Generic;
 
-namespace Phoneshop.Business
+namespace Phoneshop.Business.Services
 {
     public class BrandService : IBrandService
     {

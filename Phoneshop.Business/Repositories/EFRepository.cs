@@ -4,7 +4,7 @@ using Phoneshop.Domain.Interfaces;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
-namespace Phoneshop.Business
+namespace Phoneshop.Business.Repositories
 {
     [ExcludeFromCodeCoverage]
     public class EFRepository<T> : IRepository<T> where T : class, IEntity

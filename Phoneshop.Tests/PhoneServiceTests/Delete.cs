@@ -1,5 +1,5 @@
 ﻿using Moq;
-using Phoneshop.Business;
+using Phoneshop.Business.Services;
 using Phoneshop.Domain.Interfaces;
 using Phoneshop.Domain.Entities;
 using System;

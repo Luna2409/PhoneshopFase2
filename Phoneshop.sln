@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Phoneshop.WinForms", "Phone
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{AB7A2B05-3545-4EB2-B520-CA7435AC9ECD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImportTool.ConsoleApp", "ImportTool.ConsoleApp\ImportTool.ConsoleApp.csproj", "{20E930DB-D6C8-4967-8F3A-1ABCAD35F208}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImportTool.ConsoleApp", "ImportTool.ConsoleApp\ImportTool.ConsoleApp.csproj", "{20E930DB-D6C8-4967-8F3A-1ABCAD35F208}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phoneshop.Api", "Phoneshop.Api\Phoneshop.Api.csproj", "{1996C7AB-2591-4DCF-9DCB-215CA9E5704E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{20E930DB-D6C8-4967-8F3A-1ABCAD35F208}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20E930DB-D6C8-4967-8F3A-1ABCAD35F208}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20E930DB-D6C8-4967-8F3A-1ABCAD35F208}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1996C7AB-2591-4DCF-9DCB-215CA9E5704E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1996C7AB-2591-4DCF-9DCB-215CA9E5704E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1996C7AB-2591-4DCF-9DCB-215CA9E5704E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1996C7AB-2591-4DCF-9DCB-215CA9E5704E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

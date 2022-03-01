@@ -7,7 +7,7 @@ using System.Data;
 using System.Linq;
 
 
-namespace Phoneshop.Business
+namespace Phoneshop.Business.Services
 {
     public class PhoneService : IPhoneService
     {

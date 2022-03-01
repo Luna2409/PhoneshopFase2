@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Phoneshop.Business;
 using Phoneshop.Business.Data;
-using Phoneshop.Domain.Interfaces;
+using Phoneshop.Business.Repositories;
+using Phoneshop.Business.Services;
 using Phoneshop.Domain.Entities;
+using Phoneshop.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

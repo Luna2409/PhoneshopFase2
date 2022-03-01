@@ -5,7 +5,7 @@ using Xunit;
 using FluentAssertions;
 using System.Collections.Generic;
 using Phoneshop.Domain.Entities;
-using Phoneshop.Business;
+using Phoneshop.Business.Services;
 
 namespace Phoneshop.Tests.ImportServiceTests
 {
