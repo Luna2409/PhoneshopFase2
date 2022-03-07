@@ -5,8 +5,8 @@ using Phoneshop.Domain.Interfaces;
 
 namespace Phoneshop.Api.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
+    [ApiController]
     public class PhonesController : ControllerBase
     {
         private readonly IPhoneService _phoneService;
@@ -33,6 +33,7 @@ namespace Phoneshop.Api.Controllers
         }
 
         [HttpGet("Get/{id}")]
+        //[Route("{id}")]
         public IActionResult Get(int id)
         {
             var phone = _phoneService.Get(id);
