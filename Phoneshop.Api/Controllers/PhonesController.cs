@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Phoneshop.Domain.Entities;
 using Phoneshop.Domain.Interfaces;
 
@@ -19,21 +18,12 @@ namespace Phoneshop.Api.Controllers
         [HttpGet("GetPhones")]
         public IActionResult GetPhones(string query)
         {
-            if (string.IsNullOrEmpty(query))
-            {
-                var phones = _phoneService.GetAll();
-
-                return Ok(phones);
-            }
-            else
-            {
-                var phones = _phoneService.Search(query);
-                return Ok(phones);
-            }
+            // statement ? true : false
+            var phones = string.IsNullOrEmpty(query) ? _phoneService.GetAll() : _phoneService.Search(query);
+            return Ok(phones);
         }
 
         [HttpGet("Get/{id}")]
-        //[Route("{id}")]
         public IActionResult Get(int id)
         {
             var phone = _phoneService.Get(id);
