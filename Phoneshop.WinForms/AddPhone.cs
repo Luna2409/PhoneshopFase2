@@ -62,7 +62,7 @@ namespace Phoneshop.WinForms
                 Description = txtbxDescription.Text.ToString(),
             };
 
-            _phoneService.Create(newPhone);
+            _phoneService.CreateAsync(newPhone);
             ApplyBtnClicked = true;
             Close();
         }

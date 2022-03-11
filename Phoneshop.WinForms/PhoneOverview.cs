@@ -92,7 +92,7 @@ namespace Phoneshop.WinForms
 
             if (result == DialogResult.Yes)
             {
-                _phoneService.Delete(selectedID);
+                _phoneService.DeleteAsync(selectedID);
 
                 listBoxPhone.Items.Clear();
                 lblBrand.Text = "";

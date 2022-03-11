@@ -21,12 +21,12 @@ namespace Phoneshop.Tests.BrandServiceTests
         public void Should_CreateNewBrand()
         {
 
-            brandService.Create(new Brand
+            brandService.CreateAsync(new Brand
             {
                 Name = "OnePlus"
             });
 
-            mockRepository.Verify(x => x.Create(It.IsAny<Brand>()), Times.Once);
+            mockRepository.Verify(x => x.CreateAsync(It.IsAny<Brand>()), Times.Once);
         }
     }
 }

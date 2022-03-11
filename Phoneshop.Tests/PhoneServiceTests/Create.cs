@@ -36,7 +36,7 @@ namespace Phoneshop.Tests.PhoneServiceTests
                 new Brand { Id = 5, Name = "Xiaomi" }
             }.AsQueryable);
 
-            phoneService.Create(new Phone
+            phoneService.CreateAsync(new Phone
             {
                 Brand = new Brand { Name = "Apple" },
                 Type = "IPhone Xs",
@@ -45,7 +45,7 @@ namespace Phoneshop.Tests.PhoneServiceTests
                 Stock = 12
             });
 
-            mockRepository.Verify(x => x.Create(It.IsAny<Phone>()), Times.Once);
+            mockRepository.Verify(x => x.CreateAsync(It.IsAny<Phone>()), Times.Once);
         }
     }
 }

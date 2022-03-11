@@ -25,7 +25,7 @@ namespace ImportTool.ConsoleApp
 
             foreach (var item in importList)
             {
-                phoneService.Create(item);
+                phoneService.CreateAsync(item);
             }
         }
 

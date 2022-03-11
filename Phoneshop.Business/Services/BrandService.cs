@@ -1,6 +1,7 @@
 ﻿using Phoneshop.Domain.Interfaces;
 using Phoneshop.Domain.Entities;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Phoneshop.Business.Services
 {
@@ -13,9 +14,9 @@ namespace Phoneshop.Business.Services
             _brandRepository = brandRepository;
         }
 
-        public void Create(Brand brand)
+        public async Task CreateAsync(Brand brand)
         {
-            _brandRepository.Create(brand);
+            await _brandRepository.CreateAsync(brand);
         }
 
         public IEnumerable<Brand> GetAll()

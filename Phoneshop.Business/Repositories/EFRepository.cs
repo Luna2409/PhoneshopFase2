@@ -3,6 +3,7 @@ using Phoneshop.Business.Data;
 using Phoneshop.Domain.Interfaces;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Phoneshop.Business.Repositories
 {
@@ -16,29 +17,29 @@ namespace Phoneshop.Business.Repositories
             _context = context;
         }
 
-        public void Create(T entity)
+        public async Task CreateAsync(T entity)
         {
-            _context.Set<T>().Add(entity);
-            SaveChanges();
+            await _context.Set<T>().AddAsync(entity);
+            await SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            var found = _context.Set<T>().FirstOrDefault(x => x.Id == id);
+            var found = await GetByIdAsync(id);
             if (found != null)
             {
                 _context.Set<T>().Remove(found);
-                _context.SaveChanges();
+                await SaveChangesAsync();
             }
         }
 
         public IQueryable<T> GetAll()
             => _context.Set<T>().AsNoTracking();
 
-        public T GetById(int id)
-            => _context.Set<T>().AsNoTracking().FirstOrDefault(x => x.Id == id);
+        public async Task<T> GetByIdAsync(int id)
+            => await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
 
-        public void SaveChanges()
-            => _context.SaveChanges();
+        public async Task SaveChangesAsync()
+            => await _context.SaveChangesAsync();
     }
 }

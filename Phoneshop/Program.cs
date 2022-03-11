@@ -61,7 +61,7 @@ namespace Phoneshop
         {
             Console.Clear();
 
-            Phone phoneFound = phoneService.Get(id);
+            Phone phoneFound = phoneService.GetAsync(id);
 
             if (phoneFound == null)
             {

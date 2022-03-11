@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Phoneshop.Domain.Entities;
 using Phoneshop.Domain.Interfaces;
+using System.Threading.Tasks;
 
 namespace Phoneshop.Api.Controllers
 {
@@ -16,17 +17,20 @@ namespace Phoneshop.Api.Controllers
         }
 
         [HttpGet("GetPhones")]
-        public IActionResult GetPhones(string query)
+        public async Task<IActionResult> GetPhonesAsync(string query)
         {
-            // statement ? true : false
-            var phones = string.IsNullOrEmpty(query) ? _phoneService.GetAll() : _phoneService.Search(query);
-            return Ok(phones);
+            return await Task.Run(() =>
+            {
+                // statement ? true : false
+                var phones = string.IsNullOrEmpty(query) ? _phoneService.GetAll() : _phoneService.Search(query);
+                return Ok(phones);
+            });
         }
 
         [HttpGet("Get/{id}")]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> GetAsync(int id)
         {
-            var phone = _phoneService.Get(id);
+            var phone = await _phoneService.GetAsync(id);
 
             if (phone == null)
             {
@@ -37,10 +41,10 @@ namespace Phoneshop.Api.Controllers
         }
 
         [HttpPost("Create")]
-        public IActionResult Create(Phone phone)
+        public async Task<IActionResult> CreateAsync(Phone phone)
         {
-            _phoneService.Create(phone);
-            return CreatedAtAction(nameof(Create), new { id = phone.Id }, phone);
+            await _phoneService.CreateAsync(phone);
+            return CreatedAtAction(nameof(CreateAsync), new { id = phone.Id }, phone);
         }
     }
 }

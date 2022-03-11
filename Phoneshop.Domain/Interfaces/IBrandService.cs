@@ -1,5 +1,6 @@
 ﻿using Phoneshop.Domain.Entities;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Phoneshop.Domain.Interfaces
 {
@@ -15,6 +16,6 @@ namespace Phoneshop.Domain.Interfaces
         /// Creates a new brand
         /// </summary>
         /// <param name="brand"></param>
-        void Create(Brand brand);
+        Task CreateAsync(Brand brand);
     }
 }

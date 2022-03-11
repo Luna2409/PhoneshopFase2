@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-
+using System.Threading.Tasks;
 
 namespace Phoneshop.Business.Services
 {
@@ -25,12 +25,12 @@ namespace Phoneshop.Business.Services
             return _phoneRepository.GetAll().Include(x => x.Brand).OrderBy(x => x.Brand.Name).ThenBy(x => x.Type);
         }
 
-        public Phone Get(int id)
+        public async Task<Phone> GetAsync(int id)
         {
             if (id <= 0)
                 throw new ArgumentOutOfRangeException(nameof(id));
 
-            var phone = Phones().SingleOrDefault(x => x.Id == id);
+            var phone = await _phoneRepository.GetByIdAsync(id);
 
             return phone;
         }
@@ -47,15 +47,15 @@ namespace Phoneshop.Business.Services
                                         || x.Description.Contains(query));
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             if (id <= 0)
                 throw new ArgumentOutOfRangeException(nameof(id));
 
-            _phoneRepository.Delete(id);
+            await _phoneRepository.DeleteAsync(id);
         }
 
-        public void Create(Phone phone)
+        public async Task CreateAsync(Phone phone)
         {
             List<Phone> phoneList = Phones().ToList();
             List<Brand> brandList = _brandService.GetAll().ToList();
@@ -72,7 +72,7 @@ namespace Phoneshop.Business.Services
                     Name = phone.Brand.Name
                 };
 
-                _brandService.Create(brand);
+                await _brandService.CreateAsync(brand);
             }
 
             List<Brand> updatedBrandList = _brandService.GetAll().ToList();
@@ -80,7 +80,7 @@ namespace Phoneshop.Business.Services
             phone.BrandID = brandItem.Id;
             phone.Brand = null;
 
-            _phoneRepository.Create(phone);
+            await _phoneRepository.CreateAsync(phone);
         }
     }
 }

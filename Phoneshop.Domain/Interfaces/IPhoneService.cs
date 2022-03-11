@@ -1,6 +1,6 @@
 ﻿using Phoneshop.Domain.Entities;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 
 namespace Phoneshop.Domain.Interfaces
 {
@@ -11,7 +11,7 @@ namespace Phoneshop.Domain.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Phone Get(int id);
+        Task<Phone> GetAsync(int id);
 
         /// <summary>
         /// Gets a list of all phones in the shop
@@ -30,12 +30,12 @@ namespace Phoneshop.Domain.Interfaces
         /// Deletes a phone
         /// </summary>
         /// <param name="id"></param>
-        void Delete(int id);
+        Task DeleteAsync(int id);
 
         /// <summary>
         /// Creates a phone
         /// </summary>
         /// <param name="phone"></param>
-        void Create(Phone phone);
+        Task CreateAsync(Phone phone);
     }
 }

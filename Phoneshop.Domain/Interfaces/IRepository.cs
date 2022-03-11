@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading.Tasks;
 
 namespace Phoneshop.Domain.Interfaces
@@ -19,24 +16,24 @@ namespace Phoneshop.Domain.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        T GetById(int id);
+        Task<T> GetByIdAsync(int id);
 
         /// <summary>
         /// Creates a new entity
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        void Create(T entity);
+        Task CreateAsync(T entity);
 
         /// <summary>
         /// Deletes a entity by id
         /// </summary>
         /// <param name="id"></param>
-        void Delete(int id);
+        Task DeleteAsync(int id);
 
         /// <summary>
         /// Save changes
         /// </summary>
-        void SaveChanges();
+        Task SaveChangesAsync();
     }
 }

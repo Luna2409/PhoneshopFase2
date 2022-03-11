@@ -45,9 +45,9 @@ namespace Phoneshop.Tests.PhoneServiceTests
                 new Phone{ Id = 5, BrandID = 5, Description = "Kwaliteit"}
             }.AsQueryable<Phone>);
 
-            phoneService.Delete(4);
+            phoneService.DeleteAsync(4);
 
-            mockRepository.Verify(x => x.Delete(4), Times.Once);
+            mockRepository.Verify(x => x.DeleteAsync(4), Times.Once);
         }
 
         [Fact]
@@ -70,7 +70,7 @@ namespace Phoneshop.Tests.PhoneServiceTests
                 new Phone{ Id = 5, BrandID = 5, Description = "Kwaliteit"}
             }.AsQueryable);
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => phoneService.Delete(0));
+            Assert.Throws<ArgumentOutOfRangeException>(() => phoneService.DeleteAsync(0));
         }
     }
 }

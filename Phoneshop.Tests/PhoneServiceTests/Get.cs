@@ -39,7 +39,7 @@ namespace Phoneshop.Tests.PhoneServiceTests
                 new Phone{ Id = 5, Brand = new Brand{Name = "Xiaomi" }, Description = "Kwaliteit"}
             }.AsQueryable);
 
-            var phone = phoneService.Get(id);
+            var phone = phoneService.GetAsync(id);
             Assert.Equal(brand, phone.Brand.Name);
         }
 
@@ -55,7 +55,7 @@ namespace Phoneshop.Tests.PhoneServiceTests
                 new Phone{ Id = 5, Brand = new Brand{Name = "Xiaomi" }, Description = "Kwaliteit"}
             }.AsQueryable);
 
-            var phone = phoneService.Get(50);
+            var phone = phoneService.GetAsync(50);
 
             Assert.Null(phone);
         }
@@ -72,7 +72,7 @@ namespace Phoneshop.Tests.PhoneServiceTests
                 new Phone{ Id = 5, Brand = new Brand{Name = "Xiaomi" }, Description = "Kwaliteit"}
             }.AsQueryable);
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => phoneService.Get(0));
+            Assert.Throws<ArgumentOutOfRangeException>(() => phoneService.GetAsync(0));
         }
     }
 }
