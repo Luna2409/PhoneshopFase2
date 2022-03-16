@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Phoneshop.Domain.Entities;
 using Phoneshop.Domain.Interfaces;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace Phoneshop.Api.Controllers
         }
 
         [HttpGet("GetPhones")]
-        public async Task<IActionResult> GetPhonesAsync(string query)
+        public async Task<IActionResult> GetAllAsync(string query)
         {
             return await Task.Run(() =>
             {
@@ -28,9 +29,9 @@ namespace Phoneshop.Api.Controllers
         }
 
         [HttpGet("Get/{id}")]
-        public async Task<IActionResult> GetAsync(int id)
+        public async Task<IActionResult> GetByIdAsync(int id)
         {
-            var phone = await _phoneService.GetAsync(id);
+            var phone = await _phoneService.GetByIdAsync(id);
 
             if (phone == null)
             {
@@ -41,6 +42,7 @@ namespace Phoneshop.Api.Controllers
         }
 
         [HttpPost("Create")]
+        [Authorize]
         public async Task<IActionResult> CreateAsync(Phone phone)
         {
             await _phoneService.CreateAsync(phone);

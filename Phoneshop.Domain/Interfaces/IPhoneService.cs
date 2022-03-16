@@ -11,7 +11,7 @@ namespace Phoneshop.Domain.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<Phone> GetAsync(int id);
+        Task<Phone> GetByIdAsync(int id);
 
         /// <summary>
         /// Gets a list of all phones in the shop

@@ -22,29 +22,22 @@ namespace Phoneshop.Tests.PhoneServiceTests
             phoneService = new PhoneService(mockBrandRepository.Object, mockPhoneRepository.Object);
         }
 
-        [Theory]
-        [InlineData(1, "Huawei")]
-        [InlineData(2, "Samsung")]
-        [InlineData(3, "Apple")]
-        [InlineData(4, "Google")]
-        [InlineData(5, "Xiaomi")]
-        public void Should_GetPhoneById(int id, string brand)
+        [Fact]
+        public async void Should_GetPhoneById()
         {
-            mockPhoneRepository.Setup(x => x.GetAll()).Returns(new List<Phone>
+            mockPhoneRepository.Setup(x => x.GetByIdAsync(1)).ReturnsAsync(new Phone
             {
-                new Phone{ Id = 1, Brand = new Brand{Name = "Huawei" }, Description = "Kwaliteit"},
-                new Phone{ Id = 2, Brand = new Brand{Name = "Samsung" }, Description = "Pixel"},
-                new Phone{ Id = 3, Brand = new Brand{Name = "Apple" }, Description = "Pixel"},
-                new Phone{ Id = 4, Brand = new Brand{Name = "Google" }, Description = "Kwaliteit"},
-                new Phone{ Id = 5, Brand = new Brand{Name = "Xiaomi" }, Description = "Kwaliteit"}
-            }.AsQueryable);
+                Id = 1, 
+                Brand = new Brand{Name = "Huawei" }, 
+                Description = "Kwaliteit"
+            });
 
-            var phone = phoneService.GetAsync(id);
-            Assert.Equal(brand, phone.Brand.Name);
+            var phone = await phoneService.GetByIdAsync(1);
+            Assert.Equal("Huawei", phone.Brand.Name);
         }
 
         [Fact]
-        public void Should_Return_Null()
+        public async void Should_Throw_ArgumentOutOfRangeException()
         {
             mockPhoneRepository.Setup(x => x.GetAll()).Returns(new List<Phone>
             {
@@ -55,24 +48,7 @@ namespace Phoneshop.Tests.PhoneServiceTests
                 new Phone{ Id = 5, Brand = new Brand{Name = "Xiaomi" }, Description = "Kwaliteit"}
             }.AsQueryable);
 
-            var phone = phoneService.GetAsync(50);
-
-            Assert.Null(phone);
-        }
-
-        [Fact]
-        public void Should_Throw_ArgumentOutOfRangeException()
-        {
-            mockPhoneRepository.Setup(x => x.GetAll()).Returns(new List<Phone>
-            {
-                new Phone{ Id = 1, Brand = new Brand{Name = "Huawei" }, Description = "Kwaliteit"},
-                new Phone{ Id = 2, Brand = new Brand{Name = "Samsung" }, Description = "Pixel"},
-                new Phone{ Id = 3, Brand = new Brand{Name = "Apple" }, Description = "Pixel"},
-                new Phone{ Id = 4, Brand = new Brand{Name = "Google" }, Description = "Kwaliteit"},
-                new Phone{ Id = 5, Brand = new Brand{Name = "Xiaomi" }, Description = "Kwaliteit"}
-            }.AsQueryable);
-
-            Assert.Throws<ArgumentOutOfRangeException>(() => phoneService.GetAsync(0));
+            await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => phoneService.GetByIdAsync(0));
         }
     }
 }

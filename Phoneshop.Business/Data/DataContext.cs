@@ -1,11 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Phoneshop.Domain.Entities;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Phoneshop.Business.Data
 {
     [ExcludeFromCodeCoverage]
-    public class DataContext : DbContext
+    public class DataContext : IdentityDbContext<IdentityUser, IdentityRole, string>
     {
         public DbSet<Phone> Phones { get; set; }
         public DbSet<Brand> Brands { get; set; }
@@ -15,6 +17,7 @@ namespace Phoneshop.Business.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Brand>().HasData(
             new Brand
             {

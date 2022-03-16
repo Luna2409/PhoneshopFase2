@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
+using System.Threading.Tasks;
 
 namespace Phoneshop.Tests.PhoneServiceTests
 {
@@ -26,7 +27,7 @@ namespace Phoneshop.Tests.PhoneServiceTests
         }
 
         [Fact]
-        public void Should_DeletePhone()
+        public async void Should_DeletePhone()
         {
             mockBrandRepository.Setup(b => b.GetAll()).Returns(new List<Brand>
             {
@@ -45,13 +46,13 @@ namespace Phoneshop.Tests.PhoneServiceTests
                 new Phone{ Id = 5, BrandID = 5, Description = "Kwaliteit"}
             }.AsQueryable<Phone>);
 
-            phoneService.DeleteAsync(4);
+            await phoneService.DeleteAsync(4);
 
             mockRepository.Verify(x => x.DeleteAsync(4), Times.Once);
         }
 
         [Fact]
-        public void Should_Throw_ArgumentOutOfRangeException()
+        public async void Should_Throw_ArgumentOutOfRangeException()
         {
             mockBrandRepository.Setup(b => b.GetAll()).Returns(new List<Brand>
             {
@@ -70,7 +71,7 @@ namespace Phoneshop.Tests.PhoneServiceTests
                 new Phone{ Id = 5, BrandID = 5, Description = "Kwaliteit"}
             }.AsQueryable);
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => phoneService.DeleteAsync(0));
+            await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => phoneService.DeleteAsync(0));
         }
     }
 }

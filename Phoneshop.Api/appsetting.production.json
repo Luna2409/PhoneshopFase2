@@ -10,8 +10,8 @@
     "ConnectionString": "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Phoneshop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;MultipleActiveResultSets=true"
   },
   "jwtSettings": {
-    "Audience": "http://localhost/audience",
-    "Issuer": "http://localhost/issuer",
-    "SignKey": "C86B616E-C748-47DF-9B04-B1566F955D3E"
+    "Audience": "http://localhost/newaudience",
+    "Issuer": "http://localhost/newissuer",
+    "SignKey": "b9081be2-addf-4c3d-8454-4e0b3377ac7e"
   }
 }

@@ -25,12 +25,15 @@ namespace Phoneshop.Business.Services
             return _phoneRepository.GetAll().Include(x => x.Brand).OrderBy(x => x.Brand.Name).ThenBy(x => x.Type);
         }
 
-        public async Task<Phone> GetAsync(int id)
+        public async Task<Phone> GetByIdAsync(int id)
         {
             if (id <= 0)
                 throw new ArgumentOutOfRangeException(nameof(id));
 
             var phone = await _phoneRepository.GetByIdAsync(id);
+
+            if (phone.Brand == null)
+                phone.Brand = await _brandService.GetByIdAsync(phone.BrandID);
 
             return phone;
         }

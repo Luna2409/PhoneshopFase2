@@ -8,12 +8,13 @@ using Phoneshop.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Phoneshop
 {
     public class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             var services = new ServiceCollection();
             ConfigureServices(services);
@@ -21,10 +22,10 @@ namespace Phoneshop
             ServiceProvider serviceProvider = services.BuildServiceProvider();
             var phoneService = serviceProvider.GetRequiredService<IPhoneService>();
 
-            MainMenu(phoneService);
+            await MainMenu(phoneService);
         }
 
-        public static void MainMenu(IPhoneService phoneService)
+        public static async Task MainMenu(IPhoneService phoneService)
         {
             List<Phone> listOfPhones = phoneService.GetAll().ToList();
 
@@ -45,30 +46,30 @@ namespace Phoneshop
                 Console.Clear();
                 Console.WriteLine("invalid number \n");
 
-                MainMenu(phoneService);
+                await MainMenu(phoneService);
             }
 
             if (number == (listOfPhones.Count + 1))
-                Search(phoneService);
+                await Search(phoneService);
             else
             {
                 int id = listOfPhones[number - 1].Id;
-                Details(id, phoneService);
+                await Details(id, phoneService);
             }
         }
 
-        private static void Details(int id, IPhoneService phoneService)
+        private static async Task Details(int id, IPhoneService phoneService)
         {
             Console.Clear();
 
-            Phone phoneFound = phoneService.GetAsync(id);
+            Phone phoneFound = await phoneService.GetByIdAsync(id);
 
             if (phoneFound == null)
             {
                 Console.Clear();
                 Console.WriteLine("phone not found \n");
 
-                MainMenu(phoneService);
+                await MainMenu(phoneService);
             }
 
             Console.WriteLine($"{phoneFound.Brand.Name}, {phoneFound.Type}, {phoneFound.PriceWithTax} \n");
@@ -76,10 +77,10 @@ namespace Phoneshop
 
             Console.ReadKey();
             Console.Clear();
-            MainMenu(phoneService);
+            await MainMenu(phoneService);
         }
 
-        private static void Search(IPhoneService phoneService)
+        private static async Task Search(IPhoneService phoneService)
         {
             Console.Clear();
 
@@ -96,7 +97,7 @@ namespace Phoneshop
             Console.WriteLine("\nPress a key to go back");
             Console.ReadKey();
             Console.Clear();
-            MainMenu(phoneService);
+            await MainMenu(phoneService);
         }
 
         private static void ConfigureServices(ServiceCollection services)
