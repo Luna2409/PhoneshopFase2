@@ -11,6 +11,8 @@ namespace Phoneshop.Business.Data
     {
         public DbSet<Phone> Phones { get; set; }
         public DbSet<Brand> Brands { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<ProductOrder> ProductOrders { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         { }
@@ -18,6 +20,13 @@ namespace Phoneshop.Business.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Order>().Navigation(x => x.ProductsPerOrder).AutoInclude();
+            modelBuilder.Entity<ProductOrder>().Navigation(x => x.Phone).AutoInclude();
+
+            modelBuilder.Entity<ProductOrder>().HasKey(op => new {op.OrderId, op.PhoneId});
+
+
             modelBuilder.Entity<Brand>().HasData(
             new Brand
             {

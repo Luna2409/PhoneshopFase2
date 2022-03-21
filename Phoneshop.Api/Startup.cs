@@ -63,6 +63,7 @@ namespace Phoneshop.Api
             services.AddScoped<IPhoneService, PhoneService>();
             services.AddScoped<IBrandService, BrandService>();
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IOrderService, OrderService>();
             services.AddScoped(typeof(IRepository<>), typeof(EFRepository<>));
             services.AddScoped<UserManager<IdentityUser>>();
             services.AddScoped<SignInManager<IdentityUser>>();

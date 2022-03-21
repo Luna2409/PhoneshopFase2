@@ -17,7 +17,9 @@ namespace Phoneshop.Api.Controllers
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ITokenService _tokenService;
 
-        public UserController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, ITokenService tokenService)
+        public UserController(UserManager<IdentityUser> userManager, 
+            SignInManager<IdentityUser> signInManager, 
+            ITokenService tokenService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -29,7 +31,7 @@ namespace Phoneshop.Api.Controllers
         {
             var user = new IdentityUser 
             { 
-                UserName = userModel.UserName, 
+                UserName = userModel.Email, 
                 Email = userModel.Email 
             };
 
@@ -64,7 +66,7 @@ namespace Phoneshop.Api.Controllers
             return Ok(new
             {
                 succes = true,
-                token,
+                Token = token,
                 role = "Guest"
             });
         }
