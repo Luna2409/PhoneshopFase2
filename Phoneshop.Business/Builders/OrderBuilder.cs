@@ -7,21 +7,25 @@ namespace Phoneshop.Business.Builders
 {
     public class OrderBuilder : IOrderBuilder
     {
-        private readonly Order _order;
+        private readonly Order _order = new();
 
         public OrderBuilder()
         {
-            _order = new Order();
         }
 
         public IOrderBuilder AddProduct(ProductOrder productOrder)
         {
-            throw new NotImplementedException();
+            _order.ProductsPerOrder.Add(productOrder);
+            return this;
         }
 
         public IOrderBuilder AddProducts(IEnumerable<ProductOrder> products)
         {
-            throw new NotImplementedException();
+            foreach (var phone in products)
+            {
+                _order.ProductsPerOrder.Add(phone);
+            }
+            return this;
         }
 
         public Order Build() 
@@ -29,17 +33,20 @@ namespace Phoneshop.Business.Builders
 
         public IOrderBuilder SetPrice(double price)
         {
-            throw new NotImplementedException();
+            _order.TotalPrice = price;
+            return this;
         }
 
         public IOrderBuilder SetUserId(string userId)
         {
-            throw new NotImplementedException();
+            _order.CustomerId = userId;
+            return this;
         }
 
         public IOrderBuilder SetVat(double vat)
         {
-            throw new NotImplementedException();
+            _order.VatPercentage = vat;
+            return this;
         }
     }
 }

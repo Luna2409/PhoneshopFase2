@@ -46,7 +46,7 @@ namespace Phoneshop.Api.Controllers
         public async Task<IActionResult> CreateAsync(Phone phone)
         {
             await _phoneService.CreateAsync(phone);
-            return CreatedAtAction(nameof(CreateAsync), new { id = phone.Id }, phone);
+            return Accepted();
         }
     }
 }

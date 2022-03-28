@@ -21,8 +21,9 @@ namespace Phoneshop.Api.Controllers
         [HttpPost("Create")]
         public async Task<IActionResult> CreateAsync(Order order)
         {
+            order.Deleted = false;
             await _orderService.CreateAsync(order);
-            return CreatedAtAction(nameof(CreateAsync), new { id = order.Id }, order);
+            return Accepted();
         }
 
         [HttpDelete("Delete")]
@@ -32,20 +33,19 @@ namespace Phoneshop.Api.Controllers
             return Ok();
         }
 
-        [HttpGet("Get/{id}")]
-        [AllowAnonymous]
+        [HttpGet("GetById/{id}")]
         public async Task<IActionResult> GetByIdAsync(int id)
         {
-            var userId = User.FindFirst("UserId").Value;
+            var userId = User.FindFirst("id").Value;
 
             var order = await _orderService.GetByIdAsync(id, userId);
             return Ok(order);
         }
 
-        [HttpGet("Get/{userId}")]
-        public IActionResult GetAllForUserAsync()
+        [HttpGet("GetByUser")]
+        public IActionResult GetAllForUser()
         {
-            var userId = User.FindFirst("UserId").Value;
+            var userId = User.FindFirst("id").Value;
 
             var orders = _orderService.GetAllByUser(userId);
             return Ok(orders);

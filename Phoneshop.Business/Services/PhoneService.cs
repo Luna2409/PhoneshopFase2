@@ -22,7 +22,7 @@ namespace Phoneshop.Business.Services
 
         private IQueryable<Phone> Phones()
         {
-            return _phoneRepository.GetAll().Include(x => x.Brand).OrderBy(x => x.Brand.Name).ThenBy(x => x.Type);
+            return _phoneRepository.GetAll().OrderBy(x => x.Brand.Name).ThenBy(x => x.Type);
         }
 
         public async Task<Phone> GetByIdAsync(int id)

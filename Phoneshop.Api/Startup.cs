@@ -65,8 +65,6 @@ namespace Phoneshop.Api
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped(typeof(IRepository<>), typeof(EFRepository<>));
-            services.AddScoped<UserManager<IdentityUser>>();
-            services.AddScoped<SignInManager<IdentityUser>>();
 
             services.AddSwaggerGen(c =>
             {

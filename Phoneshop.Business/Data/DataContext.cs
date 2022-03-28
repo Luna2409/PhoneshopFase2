@@ -21,10 +21,11 @@ namespace Phoneshop.Business.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Phone>().Navigation(x => x.Brand).AutoInclude();
             modelBuilder.Entity<Order>().Navigation(x => x.ProductsPerOrder).AutoInclude();
             modelBuilder.Entity<ProductOrder>().Navigation(x => x.Phone).AutoInclude();
 
-            modelBuilder.Entity<ProductOrder>().HasKey(op => new {op.OrderId, op.PhoneId});
+            modelBuilder.Entity<ProductOrder>().HasKey(p => new {p.OrderId, p.PhoneId});
 
 
             modelBuilder.Entity<Brand>().HasData(

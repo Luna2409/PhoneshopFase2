@@ -35,5 +35,7 @@ namespace Phoneshop.Domain.Interfaces
         /// Save changes
         /// </summary>
         Task SaveChangesAsync();
+
+        void Update(T entity);
     }
 }

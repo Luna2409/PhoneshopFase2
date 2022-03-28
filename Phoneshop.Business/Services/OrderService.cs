@@ -34,7 +34,9 @@ namespace Phoneshop.Business.Services
 
             var order = await _orderRepository.GetByIdAsync(id);
             order.Deleted = true;
+            //order.Reason = 1;
 
+            _orderRepository.Update(order);
             await _orderRepository.SaveChangesAsync();
         }
 
@@ -48,7 +50,7 @@ namespace Phoneshop.Business.Services
             var order = await _orderRepository.GetByIdAsync(id);
 
             if (order.CustomerId != userId)
-                throw new ArgumentException("Wrong order!");
+                throw new ArgumentException("This order does not belong to this userId!");
 
             return order;
         }

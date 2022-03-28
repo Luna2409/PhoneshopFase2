@@ -36,7 +36,7 @@ namespace Phoneshop.Api.Controllers
         public async Task<IActionResult> CreateAsync(Brand brand)
         {
             await _brandService.CreateAsync(brand);
-            return CreatedAtAction(nameof(CreateAsync), new { id = brand.Id }, brand);
+            return Accepted();
         }
 
         [HttpDelete("Delete")]
