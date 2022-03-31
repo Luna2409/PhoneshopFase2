@@ -1,10 +1,11 @@
 ﻿using Phoneshop.Domain.Entities;
 using Phoneshop.Domain.Interfaces;
-using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Phoneshop.Business.Builders
 {
+    [ExcludeFromCodeCoverage]
     public class OrderBuilder : IOrderBuilder
     {
         private readonly Order _order = new();
@@ -28,7 +29,7 @@ namespace Phoneshop.Business.Builders
             return this;
         }
 
-        public Order Build() 
+        public Order Build()
             => _order;
 
         public IOrderBuilder SetPrice(double price)
