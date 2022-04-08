@@ -12,7 +12,7 @@ namespace Phoneshop.Business.Services
 {
     public class TokenService : ITokenService
     {
-        IConfiguration _config;
+        private readonly IConfiguration _config;
 
         public TokenService(IConfiguration config)
         {
